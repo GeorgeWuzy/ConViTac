@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-from torchvision.models import resnet50, ResNet50_Weights
 from transformers import CLIPImageProcessor, CLIPVisionModelWithProjection
 import torchvision.transforms.functional as TF
 from torchvision.transforms import InterpolationMode
@@ -100,3 +99,4 @@ class ConViTac(nn.Module):
         out = self.fc(out)
 
         return out
+
