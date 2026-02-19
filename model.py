@@ -5,16 +5,6 @@ from transformers import CLIPImageProcessor, CLIPVisionModelWithProjection
 import torchvision.transforms.functional as TF
 from torchvision.transforms import InterpolationMode
 
-class SelfAttention(nn.Module):
-    def __init__(self, dim, num_heads):
-        super(SelfAttention, self).__init__()
-        self.attention = nn.MultiheadAttention(embed_dim=dim, num_heads=num_heads, batch_first=True)
-
-    def forward(self, x):
-        B, N, C = x.shape  # N is the sequence length
-        x, _ = self.attention(x, x, x)
-        return x
-
 class CrossModalAttention(nn.Module):
     def __init__(self, d_model, nhead):
         super(CrossModalAttention, self).__init__()
@@ -108,4 +98,5 @@ class ConViTac(nn.Module):
         
         out = torch.flatten(out, 1)
         out = self.fc(out)
+
         return out
